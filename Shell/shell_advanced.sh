@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+chmod o+x shell_advanced.sh
 
 chapter_number=5
 echo $chapter_number
