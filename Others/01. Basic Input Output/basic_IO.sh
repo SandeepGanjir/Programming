@@ -1,4 +1,4 @@
-# Small Program to Read a user's name and greet them.
+# Small Program to Read a user's name and greet them with Abbreviated name.
 
 function abbreviate {
     local shortName=''
