@@ -1,4 +1,3 @@
-
 // Small Program to Read a user's name and greet them with Abbreviated name.
 
 import java.io.FileReader;
