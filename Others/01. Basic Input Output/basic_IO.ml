@@ -4,6 +4,11 @@
     # #use "basic_IO.ml";;
   OR
     G:\Temp\Programming> ocaml basic_IO.ml
+
+  For C Bytecode
+    G:\Temp\Programming> ocamlc -output-obj -o basic_IO.c basic_IO.ml
+
+  For port to Java  http://www.ocamljava.org/downloads/
 *)
 
 let abbreviateName p_Name = 
