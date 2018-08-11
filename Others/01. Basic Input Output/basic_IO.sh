@@ -13,7 +13,7 @@ function abbreviate {
 #### Console Input ####
 echo
 echo 'User Input Mode: '
-echo 'Please Enter Your Name: '
+echo -n 'Please Enter Your Name: '
 read name
 echo "Good Morning $(abbreviate $name)! How are you today?"
 

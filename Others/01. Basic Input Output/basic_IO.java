@@ -26,7 +26,7 @@ public class basic_IO {
         Scanner ins = new Scanner(System.in);
         String name = "";
         System.out.println("\nUser Input Mode: ");
-        System.out.println("Please Enter Your Name: ");
+        System.out.print("Please Enter Your Name: ");
         name = ins.nextLine();
         System.out.println("Good Morning " + abbreviateName(name) + "! How are you today?");
         ins.close();
