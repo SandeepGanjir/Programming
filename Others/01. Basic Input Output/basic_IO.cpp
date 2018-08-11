@@ -1,4 +1,8 @@
 // Small Program to Read a user's name and greet them with Abbreviated name.
+/*  Use as below:
+    G:\Temp\Programming> g++ basic_IO.cpp -o basic_IO
+    G:\Temp\Programming> basic_IO
+*/
 
 #include <iostream>
 #include <cstring>

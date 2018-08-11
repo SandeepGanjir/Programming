@@ -1,4 +1,5 @@
 # Small Program to Read a user's name and greet them with Abbreviated name.
+# Use as: G:\Temp\Programming> bash basic_IO.sh
 
 function abbreviate {
     local shortName=''

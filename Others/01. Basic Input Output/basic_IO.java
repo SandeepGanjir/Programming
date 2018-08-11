@@ -1,4 +1,8 @@
 // Small Program to Read a user's name and greet them with Abbreviated name.
+/*  Use as below:
+    G:\Temp\Programming> javac basic_IO.java
+    G:\Temp\Programming> java basic_IO
+*/
 
 import java.io.FileReader;
 import java.util.Scanner;

@@ -1,4 +1,7 @@
 # Small Program to Read a user's name and greet them with Abbreviated name.
+''' Use as below:
+      G:\Temp\Programming> pyhon -u basic_IO.py
+'''
 
 def abbreviateName(p_Name):
     result = ""
