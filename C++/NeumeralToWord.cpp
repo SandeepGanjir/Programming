@@ -1,86 +1,54 @@
 // A program to Read a number and print it in Words.
+/*  Use as below:
+    G:\Temp\Programming> gcc NeumeralToWord.cpp -o NeumeralToWord
+    G:\Temp\Programming> NeumeralToWord
+*/
 
 #include <iostream>
-//#include <cstdlib>
-//#include <string>
 #include <conio.h>
 
-main()
+class SpellNum
 {
-    char n[101];
-    int i, d, a = 1, f = 1, m = 0, e = 0, o = 1;
-    printf("\nA program to Read a number{upto 100 digits} and print it in Words.");
-    printf("\n{Input can be given e.g as -12345678901234567890.12345678901234567890}\n");
-    printf("\nPlease enter a Number :  ");
+	char n[101];
+	int i, d, a = 1, f = 1, m = 0, e = 0, o = 1;
 
-    for (i = 0; i < 101; n[i++] = 48);
-
-    for (i = 0; a != 13;)
-    {
-        a = getch();
-        if (a > 47 && a < 58 || a == 46 && f || !i && a == 45)
-        {
-            n[i++] = a;
-            putch(a);
-            if (a == 46)
-                d = i - 1, f = 0;
-            if (a == 45)
-                m = 1;
-        }
-        if (a == 8 && i > 0)
-        {
-            --i;
-            printf("\b \b");
-            n[i] == 46 ? f = 1 : f = f;
-            n[i] == 45 ? m = 0 : m = m;
-        }
-    }
-    d = f ? i : d;
-    if (d > 66)
-        printf("\n\n\tGiven Exponent is out of Range. Some junk is Being Printed.");
-    
-    m ? printf("\n\nMinus ") : printf("\n\n");
-
-    for (o; m < d; m++, o = 1)
+	void _printPreDecimalTeens(int position)
 	{
-		e = d - m;
-		a = n[m] * 10 + n[m + 1] - 528;
-		if (!((e - 2) % 3) && a > 10 && a < 20)
+		switch (position)
 		{
-			++m, o = 0;
-			switch (a)
-			{
-			case 11:
-				printf("Eleven ");
-				break;
-			case 12:
-				printf("Twelve ");
-				break;
-			case 13:
-				printf("Thirteen ");
-				break;
-			case 14:
-				printf("Fourteen ");
-				break;
-			case 15:
-				printf("Fifteen ");
-				break;
-			case 16:
-				printf("Sixteen ");
-				break;
-			case 17:
-				printf("Seventeen ");
-				break;
-			case 18:
-				printf("Eighteen ");
-				break;
-			case 19:
-				printf("Ninteen ");
-				break;
-			}
+		case 11:
+			printf("Eleven ");
+			break;
+		case 12:
+			printf("Twelve ");
+			break;
+		case 13:
+			printf("Thirteen ");
+			break;
+		case 14:
+			printf("Fourteen ");
+			break;
+		case 15:
+			printf("Fifteen ");
+			break;
+		case 16:
+			printf("Sixteen ");
+			break;
+		case 17:
+			printf("Seventeen ");
+			break;
+		case 18:
+			printf("Eighteen ");
+			break;
+		case 19:
+			printf("Ninteen ");
+			break;
 		}
+	}
 
-		switch ((e % 3 == 2) * n[m] * o)
+	void _printPreDecimalTens(int position)
+	{
+		switch (position)
 		{
 		case 49:
 			printf("Ten ");
@@ -110,8 +78,11 @@ main()
 			printf("Ninty ");
 			break;
 		}
+	}
 
-		switch ((e % 3 == 1 || e % 3 == 0) * n[m])
+	void _printPreDecimalUnits(int position)
+	{
+		switch (position)
 		{
 		case 49:
 			printf("One ");
@@ -141,9 +112,11 @@ main()
 			printf("Nine ");
 			break;
 		}
-		(e % 3 == 0 && n[m] > 48) ? printf("Hundred ") : printf("");
+	}
 
-		switch ((e * !((e - 1 - !o) % 3) / 3) * !!(n[m] + n[m - 1] + n[m - 2] - 144))
+	void _printPreDecimalThousandths(int position)
+	{
+		switch (position)
 		{
 		case 1:
 			printf("Thousand, ");
@@ -211,43 +184,115 @@ main()
 		}
 	}
 
-	f ? printf(". ") : printf("Point(Decimal) ");
-	
-	while (d < i)
-		switch (n[d++])
+	void _printPreDecimal()
+	{
+		for (o; m < d; m++, o = 1)
 		{
-		case 48:
-			printf("Zero ");
-			break;
-		case 49:
-			printf("One ");
-			break;
-		case 50:
-			printf("Two ");
-			break;
-		case 51:
-			printf("Three ");
-			break;
-		case 52:
-			printf("Four ");
-			break;
-		case 53:
-			printf("Five ");
-			break;
-		case 54:
-			printf("Six ");
-			break;
-		case 55:
-			printf("Seven ");
-			break;
-		case 56:
-			printf("Eight ");
-			break;
-		case 57:
-			printf("Nine ");
-			break;
+			e = d - m;
+			a = n[m] * 10 + n[m + 1] - 528;
+			if (!((e - 2) % 3) && a > 10 && a < 20)
+			{
+				++m, o = 0;
+				_printPreDecimalTeens(a);
+			}
+			_printPreDecimalTens((e % 3 == 2) * n[m] * o);
+			_printPreDecimalUnits((e % 3 == 1 || e % 3 == 0) * n[m]);
+			(e % 3 == 0 && n[m] > 48) ? printf("Hundred ") : printf("");
+			_printPreDecimalThousandths((e * !((e - 1 - !o) % 3) / 3) * !!(n[m] + n[m - 1] + n[m - 2] - 144));
 		}
+	}
 
-    getch();
-    return 0;
+	void _printPostDecimal()
+	{
+		while (d < i)
+			switch (n[d++])
+			{
+			case 48:
+				printf("Zero ");
+				break;
+			case 49:
+				printf("One ");
+				break;
+			case 50:
+				printf("Two ");
+				break;
+			case 51:
+				printf("Three ");
+				break;
+			case 52:
+				printf("Four ");
+				break;
+			case 53:
+				printf("Five ");
+				break;
+			case 54:
+				printf("Six ");
+				break;
+			case 55:
+				printf("Seven ");
+				break;
+			case 56:
+				printf("Eight ");
+				break;
+			case 57:
+				printf("Nine ");
+				break;
+			}
+	}
+
+
+  public:
+
+	void takeInput()
+	{
+		printf("\nA program to Read a number{upto 100 digits} and print it in Words.");
+		printf("\n{Input can be given e.g as -12345678901234567890.12345678901234567890}\n");
+		printf("\nPlease enter a Number :  ");
+
+		for (i = 0; i < 101; n[i++] = 48);
+
+		for (i = 0; a != 13;)
+		{
+			a = getch();
+			if (a > 47 && a < 58 || a == 46 && f || !i && a == 45)
+			{
+				n[i++] = a;
+				putch(a);
+				if (a == 46)
+					d = i - 1, f = 0;
+				if (a == 45)
+					m = 1;
+			}
+			if (a == 8 && i > 0)
+			{
+				--i;
+				printf("\b \b");
+				n[i] == 46 ? f = 1 : f = f;
+				n[i] == 45 ? m = 0 : m = m;
+			}
+		}
+		d = f ? i : d;
+	}
+
+	void printWord()
+	{
+		if (d > 66)
+			printf("\n\n\tGiven Exponent is out of Range. Some junk is Being Printed.");
+
+		m ? printf("\n\nMinus ") : printf("\n\n");
+		_printPreDecimal();
+
+		f ? printf(". ") : printf("Point(Decimal) ");
+		_printPostDecimal();
+	}
+};
+
+main()
+{
+	SpellNum numToWord;
+	numToWord.takeInput();
+	numToWord.printWord();
+
+	getch();
+	return 0;
 }
