@@ -9,8 +9,8 @@
 
 class SpellNum
 {
-	char n[101];
-	int i, d, a = 1, f = 1, m = 0, e = 0, o = 1;
+	char num[101];
+	int i, d, a = 1, f = 1, m_IsNegative = 0;
 
 	void _printPreDecimalTeens(int position)
 	{
@@ -50,31 +50,31 @@ class SpellNum
 	{
 		switch (position)
 		{
-		case 49:
+		case '1':
 			printf("Ten ");
 			break;
-		case 50:
+		case '2':
 			printf("Twenty ");
 			break;
-		case 51:
+		case '3':
 			printf("Thirty ");
 			break;
-		case 52:
+		case '4':
 			printf("Forty ");
 			break;
-		case 53:
+		case '5':
 			printf("Fifty ");
 			break;
-		case 54:
+		case '6':
 			printf("Sixty ");
 			break;
-		case 55:
+		case '7':
 			printf("Seventy ");
 			break;
-		case 56:
+		case '8':
 			printf("Eighty ");
 			break;
-		case 57:
+		case '9':
 			printf("Ninty ");
 			break;
 		}
@@ -186,89 +186,89 @@ class SpellNum
 
 	void _printPreDecimal()
 	{
-		for (o; m < d; m++, o = 1)
+		int o, m = m_IsNegative, e = 0;
+
+		for (o = 1; m < d; m++, o = 1)
 		{
 			e = d - m;
-			a = n[m] * 10 + n[m + 1] - 528;
+			a = (num[m] - '0') * 10 + (num[m + 1] - '0');
 			if (!((e - 2) % 3) && a > 10 && a < 20)
 			{
 				++m, o = 0;
 				_printPreDecimalTeens(a);
 			}
-			_printPreDecimalTens((e % 3 == 2) * n[m] * o);
-			_printPreDecimalUnits((e % 3 == 1 || e % 3 == 0) * n[m]);
-			(e % 3 == 0 && n[m] > 48) ? printf("Hundred ") : printf("");
-			_printPreDecimalThousandths((e * !((e - 1 - !o) % 3) / 3) * !!(n[m] + n[m - 1] + n[m - 2] - 144));
+			_printPreDecimalTens((e % 3 == 2) * num[m] * o);
+			_printPreDecimalUnits((e % 3 == 1 || e % 3 == 0) * num[m]);
+			(e % 3 == 0 && num[m] > '0') ? printf("Hundred ") : printf("");
+			_printPreDecimalThousandths((e * !((e - 1 - !o) % 3) / 3) * !!(num[m] + num[m - 1] + num[m - 2] - 144));
 		}
 	}
 
 	void _printPostDecimal()
 	{
 		while (d < i)
-			switch (n[d++])
+			switch (num[d++] - '0')
 			{
-			case 48:
+			case 0:
 				printf("Zero ");
 				break;
-			case 49:
+			case 1:
 				printf("One ");
 				break;
-			case 50:
+			case 2:
 				printf("Two ");
 				break;
-			case 51:
+			case 3:
 				printf("Three ");
 				break;
-			case 52:
+			case 4:
 				printf("Four ");
 				break;
-			case 53:
+			case 5:
 				printf("Five ");
 				break;
-			case 54:
+			case 6:
 				printf("Six ");
 				break;
-			case 55:
+			case 7:
 				printf("Seven ");
 				break;
-			case 56:
+			case 8:
 				printf("Eight ");
 				break;
-			case 57:
+			case 9:
 				printf("Nine ");
 				break;
 			}
 	}
 
-
   public:
-
 	void takeInput()
 	{
 		printf("\nA program to Read a number{upto 100 digits} and print it in Words.");
 		printf("\n{Input can be given e.g as -12345678901234567890.12345678901234567890}\n");
 		printf("\nPlease enter a Number :  ");
 
-		for (i = 0; i < 101; n[i++] = 48);
+		for (i = 0; i < 101; num[i++] = '0');
 
 		for (i = 0; a != 13;)
 		{
 			a = getch();
-			if (a > 47 && a < 58 || a == 46 && f || !i && a == 45)
+			if (a >= '0' && a <= '9' || a == '.' && f || !i && a == '-')
 			{
-				n[i++] = a;
+				num[i++] = a;
 				putch(a);
-				if (a == 46)
+				if (a == '.')
 					d = i - 1, f = 0;
-				if (a == 45)
-					m = 1;
+				if (a == '-')
+					m_IsNegative = 1;
 			}
 			if (a == 8 && i > 0)
 			{
 				--i;
 				printf("\b \b");
-				n[i] == 46 ? f = 1 : f = f;
-				n[i] == 45 ? m = 0 : m = m;
+				num[i] == '.' ? f = 1 : f = f;
+				m_IsNegative = (num[i] == '-') ? 0 : m_IsNegative;
 			}
 		}
 		d = f ? i : d;
@@ -279,7 +279,7 @@ class SpellNum
 		if (d > 66)
 			printf("\n\n\tGiven Exponent is out of Range. Some junk is Being Printed.");
 
-		m ? printf("\n\nMinus ") : printf("\n\n");
+		m_IsNegative ? printf("\n\nMinus ") : printf("\n\n");
 		_printPreDecimal();
 
 		f ? printf(". ") : printf("Point(Decimal) ");
