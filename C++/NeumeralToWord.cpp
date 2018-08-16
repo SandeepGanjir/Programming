@@ -3,6 +3,7 @@
     G:\Temp\Programming> gcc NeumeralToWord.cpp -o NeumeralToWord
     G:\Temp\Programming> NeumeralToWord
 */
+// Bug with input -12556890.6780
 
 #include <iostream>
 #include <conio.h>
@@ -10,7 +11,7 @@
 class SpellNum
 {
 	char num[101];
-	int i, d, a = 1, f = 1, m_IsNegative = 0;
+	int i, m_DecimalPos, m_hasDecimal = 0, m_IsNegative = 0, tmpChar = 1;
 
 	void _printPreDecimalTeens(int position)
 	{
@@ -188,14 +189,14 @@ class SpellNum
 	{
 		int o, m = m_IsNegative, e = 0;
 
-		for (o = 1; m < d; m++, o = 1)
+		for (o = 1; m < m_DecimalPos; m++, o = 1)
 		{
-			e = d - m;
-			a = (num[m] - '0') * 10 + (num[m + 1] - '0');
-			if (!((e - 2) % 3) && a > 10 && a < 20)
+			e = m_DecimalPos - m;
+			tmpChar = (num[m] - '0') * 10 + (num[m + 1] - '0');
+			if (!((e - 2) % 3) && tmpChar > 10 && tmpChar < 20)
 			{
 				++m, o = 0;
-				_printPreDecimalTeens(a);
+				_printPreDecimalTeens(tmpChar);
 			}
 			_printPreDecimalTens((e % 3 == 2) * num[m] * o);
 			_printPreDecimalUnits((e % 3 == 1 || e % 3 == 0) * num[m]);
@@ -206,8 +207,8 @@ class SpellNum
 
 	void _printPostDecimal()
 	{
-		while (d < i)
-			switch (num[d++] - '0')
+		while (m_DecimalPos < i)
+			switch (num[m_DecimalPos++] - '0')
 			{
 			case 0:
 				printf("Zero ");
@@ -251,38 +252,38 @@ class SpellNum
 
 		for (i = 0; i < 101; num[i++] = '0');
 
-		for (i = 0; a != 13;)
+		for (i = 0; tmpChar != 13;)
 		{
-			a = getch();
-			if (a >= '0' && a <= '9' || a == '.' && f || !i && a == '-')
+			tmpChar = getch();
+			if (tmpChar >= '0' && tmpChar <= '9' || tmpChar == '.' && !m_hasDecimal || !i && tmpChar == '-')
 			{
-				num[i++] = a;
-				putch(a);
-				if (a == '.')
-					d = i - 1, f = 0;
-				if (a == '-')
+				num[i++] = tmpChar;
+				putch(tmpChar);
+				if (tmpChar == '.')
+					m_DecimalPos = i - 1, m_hasDecimal = 1;
+				if (tmpChar == '-')
 					m_IsNegative = 1;
 			}
-			if (a == 8 && i > 0)
+			if (tmpChar == 8 && i > 0)
 			{
 				--i;
 				printf("\b \b");
-				num[i] == '.' ? f = 1 : f = f;
+				m_hasDecimal = num[i] == '.' ? 0 : m_hasDecimal;
 				m_IsNegative = (num[i] == '-') ? 0 : m_IsNegative;
 			}
 		}
-		d = f ? i : d;
+		m_DecimalPos = m_hasDecimal ? m_DecimalPos : i;
 	}
 
 	void printWord()
 	{
-		if (d > 66)
+		if (m_DecimalPos > 66)
 			printf("\n\n\tGiven Exponent is out of Range. Some junk is Being Printed.");
 
 		m_IsNegative ? printf("\n\nMinus ") : printf("\n\n");
 		_printPreDecimal();
 
-		f ? printf(". ") : printf("Point(Decimal) ");
+		m_hasDecimal ? printf("Point(Decimal) ") : printf(". ");
 		_printPostDecimal();
 	}
 };
