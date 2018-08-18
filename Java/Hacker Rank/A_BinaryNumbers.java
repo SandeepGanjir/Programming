@@ -1,4 +1,3 @@
-
 /*
  * Given a base-10 integer n, convert it to binary (base-2). Then find and print
  * the maximum number of consecutive 1's in its binary representation
@@ -6,7 +5,6 @@
  * Input: A single integer, n such that 1 <= n <= 1M Output: A single integer
  */
 
-import java.io.*;
 import java.util.*;
 
 public class A_BinaryNumbers {

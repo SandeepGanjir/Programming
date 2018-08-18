@@ -1,6 +1,10 @@
-/*Given a string representing a number in hexadecimal format, convert it into its equivalent binary string. For e.g. if the input if "1F1" then its binary equivalent is "111110001". If the input is "13AFFFF", the output should be "1001110101111111111111111".
+/*
+* Given a string representing a number in hexadecimal format, convert it into its equivalent binary string. 
+* For e.g. if the input if "1F1" then its binary equivalent is "111110001". If the input is "13AFFFF", 
+* the output should be "1001110101111111111111111".
 */
-public class HexBin {
+
+public class D_HexBin {
 	static String test1 = "13AFFFF";
 	static String test2 = "1F1";
 	static String test3 = "02A6CF0E";
@@ -8,7 +12,7 @@ public class HexBin {
 	static String testcase = test3;
 
 	public static void main(String args[]) {
-		HexBin inst = new HexBin();
+		D_HexBin inst = new D_HexBin();
 		String v = inst.toBin(testcase);
 		System.out.println(v);
 	}
