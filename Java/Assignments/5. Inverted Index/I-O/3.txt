@@ -1,0 +1,6 @@
+3
+    Tries facilitate longest prefix matching
+    The number of* internal nodes from root to leaf equals the length of* the key Balancing the tree is therefore of no concern
+The following are the main advantages of tries over hash tables
+    Tries support ordered iteration whereas iteration over a hash table will result in a pseudorandom order given by the hash function  and further affected by the order of hash collisions which is determined by the implementation 
+    Tries facilitate longest prefix matching but hashing does not as a consequence of* the above Performing such a closest fit find can depending on implementation be as quick as an exact find

@@ -1,0 +1,27 @@
+#!/usr/bin/gnuplot
+reset
+set terminal png
+
+#set xdata time
+#set timefmt "%d/%m/%Y %H:%M:%S"
+#set format x "%H:%M"
+set xlabel "number of hash functions (k)"
+
+set ylabel "Size of bit array (m)"
+set yrange [0:1]
+
+set title "Rate of false positives in bloom filter with varying degree of k and m"
+set key reverse Left outside
+set grid
+
+set style data linespoints
+
+plot "test.dat" using 1:3 title "slot 1", \
+"" using 1:2 title "m=5*n", \
+"" using 1:3 title "m=10*n", \
+"" using 1:4 title "m=15*n", \
+"" using 1:5 title "m=20*n", \
+"" using 1:6 title "m=25*n", \
+"" using 1:7 title "m=30*n", \
+"" using 1:8 title "m=35*n"
+#

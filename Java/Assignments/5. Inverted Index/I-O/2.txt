@@ -1,0 +1,12 @@
+2
+Unlike most other data structures tries have the peculiar feature that the code path and hence the time required is almost identical for insert delete and find operations As a result for situations where code is inserting deleting and finding in equal measure tries can handily beat binary search trees as well as provide a better basis for the CPU s instruction and branch caches
+The following are the main advantages of tries over binary search trees  BSTs* 
+    Looking up keys is faster Looking up a key of* length m takes worst case O m  time A BST performs O log n   comparisons of keys where n is the number of elements in the tree because lookups depend on the depth of the tree which is logarithmic in the number of keys if the tree is balanced Hence in the worst case a BST takes O m log n  time Moreover in the worst case log n  will approach m Also the simple operations tries use during lookup such as array indexing using a character are fast on real machines
+    Tries are more space efficient when they contain a large number of short keys since nodes are shared between keys with common initial subsequences
+    Tries facilitate longest prefix matching
+    The number of* internal nodes from root to leaf equals the length of* the key Balancing the tree is therefore of no concern
+The following are the main advantages of tries over hash tables
+    Tries support ordered iteration whereas iteration over a hash table will result in a pseudorandom order given by the hash function  and further affected by the order of hash collisions which is determined by the implementation 
+    Tries facilitate longest prefix matching but hashing does not as a consequence of* the above Performing such a closest fit find can depending on implementation be as quick as an exact find
+    Tries tend to be faster on average at insertion than hash tables because hash tables must rebuild their index when it becomes full   a very expensive operation Tries therefore have much better bounded worst case time costs which is important for latency sensitive programs
+    Since no hash function is used tries are generally faster than hash tables for small keys

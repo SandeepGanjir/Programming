@@ -1,0 +1,164 @@
+digraph "G" {
+	graph [
+		fontsize = "14"
+		fontname = "Times-Roman"
+		fontcolor = "black"
+	]
+	node [
+		fontsize = "14"
+		fontname = "Times-Roman"
+		fontcolor = "black"
+		shape = "ellipse"
+		style = "solid"
+	]
+	edge [
+		fontsize = "14"
+		fontname = "Times-Roman"
+		fontcolor = "black"
+		style = "solid"
+	]
+	"0" [
+		fontsize = "14"
+		fontname = "Times-Roman"
+		fontcolor = "black"
+		label = " Key :47 , Value :58 , Prio :8 "
+		shape = "ellipse"
+		style = "solid"
+		color = "Black"
+	]
+	"1" [
+		fontsize = "14"
+		fontname = "Times-Roman"
+		fontcolor = "black"
+		label = " Key :33 , Value :-42 , Prio :9 "
+		shape = "ellipse"
+		style = "solid"
+		color = "Blue"
+	]
+	"2" [
+		fontsize = "14"
+		fontname = "Times-Roman"
+		fontcolor = "black"
+		label = " Key :78 , Value :454 , Prio :9 "
+		shape = "ellipse"
+		style = "solid"
+		color = "Red"
+	]
+	"3" [
+		fontsize = "14"
+		fontname = "Times-Roman"
+		fontcolor = "black"
+		label = " Key :24 , Value :7310 , Prio :9 "
+		shape = "ellipse"
+		style = "solid"
+		color = "Blue"
+	]
+	"4" [
+		fontsize = "14"
+		fontname = "Times-Roman"
+		fontcolor = "black"
+		label = " Key :46 , Value :472 , Prio :11 "
+		shape = "ellipse"
+		style = "solid"
+		color = "Red"
+	]
+	"5" [
+		fontsize = "14"
+		fontname = "Times-Roman"
+		fontcolor = "black"
+		label = " Key :56 , Value :575 , Prio :10 "
+		shape = "ellipse"
+		style = "solid"
+		color = "Blue"
+	]
+	"6" [
+		fontsize = "14"
+		fontname = "Times-Roman"
+		fontcolor = "black"
+		label = " Key :97 , Value :-678 , Prio :13 "
+		shape = "ellipse"
+		style = "solid"
+		color = "Red"
+	]
+	"7" [
+		fontsize = "14"
+		fontname = "Times-Roman"
+		fontcolor = "black"
+		label = " Key :23 , Value :577 , Prio :12 "
+		shape = "ellipse"
+		style = "solid"
+		color = "Blue"
+	]
+	"8" [
+		fontsize = "14"
+		fontname = "Times-Roman"
+		fontcolor = "black"
+		label = " Key :30 , Value :39 , Prio :15 "
+		shape = "ellipse"
+		style = "solid"
+		color = "Red"
+	]
+	"9" [
+		fontsize = "14"
+		fontname = "Times-Roman"
+		fontcolor = "black"
+		label = " Key :13 , Value :31 , Prio :14 "
+		shape = "ellipse"
+		style = "solid"
+		color = "Blue"
+	]
+	"0" -> "1" [
+		fontsize = "14"
+		fontname = "Times-Roman"
+		fontcolor = "black"
+		style = "solid"
+	]
+	"0" -> "2" [
+		fontsize = "14"
+		fontname = "Times-Roman"
+		fontcolor = "black"
+		style = "solid"
+	]
+	"1" -> "3" [
+		fontsize = "14"
+		fontname = "Times-Roman"
+		fontcolor = "black"
+		style = "solid"
+	]
+	"1" -> "4" [
+		fontsize = "14"
+		fontname = "Times-Roman"
+		fontcolor = "black"
+		style = "solid"
+	]
+	"2" -> "5" [
+		fontsize = "14"
+		fontname = "Times-Roman"
+		fontcolor = "black"
+		style = "solid"
+	]
+	"2" -> "6" [
+		fontsize = "14"
+		fontname = "Times-Roman"
+		fontcolor = "black"
+		style = "solid"
+	]
+	"3" -> "7" [
+		fontsize = "14"
+		fontname = "Times-Roman"
+		fontcolor = "black"
+		style = "solid"
+	]
+	"3" -> "8" [
+		fontsize = "14"
+		fontname = "Times-Roman"
+		fontcolor = "black"
+		style = "solid"
+	]
+	"7" -> "9" [
+		fontsize = "14"
+		fontname = "Times-Roman"
+		fontcolor = "black"
+		style = "solid"
+	]
+}

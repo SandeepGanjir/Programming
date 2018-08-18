@@ -1,0 +1,4 @@
+4
+    Tries tend to be faster on average at insertion than hash tables because hash tables must rebuild their index when it becomes full   a very expensive operation Tries therefore have much better bounded worst case time costs which is important for latency sensitive programs
+    Since no hash function is used tries are generally faster than hash tables for small keys
+Sandy, Sandy. Sandy; Sandy: "Sandy" 'Sandy' (Sandy) {Sandy} [Sandy] _Sandy-abcdef Sandy_abcdef /Sandy/abcdef
