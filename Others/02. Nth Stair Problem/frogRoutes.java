@@ -1,5 +1,6 @@
 /* Special class of Program with O(exp(n)) naive solution but has O(n) soultion using 
     dynamic programming and O(log(n)) optimized solution using matrix multiplication.
+   Required Property : T(n) = Σ±Ci*T(n-i), where Ci could be 0 and Range of i << n.
    Example : A frog can leap 2,3 or 5 step in one jump. Given a stairs of n steps, 
     determine the number of different possible routes the frog can take.
 
@@ -67,24 +68,6 @@ class xtremeOptimisation {
             }
         }
         return resVector;
-    }
-
-    private void printMatrix(int[][] M) {
-        for (int i = 0; i < M.length; i++) {
-            printVector(M[i]);
-            /*
-             * System.out.print("[ "); for (int j = 0; j < M[i].length; j++) {
-             * System.out.print(M[i][j] + ", "); } System.out.println("]");
-             */
-        }
-    }
-
-    private void printVector(int[] V) {
-        System.out.print("[ ");
-        for (int j = 0; j < V.length; j++) {
-            System.out.print(V[j] + ", ");
-        }
-        System.out.println("]");
     }
 }
 
