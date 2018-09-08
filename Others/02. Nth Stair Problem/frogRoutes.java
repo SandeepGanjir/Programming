@@ -10,12 +10,36 @@
 */
 
 class xtremeOptimisation {
-    private int[] baseCase = null;
-    private int[][] Matrix = null;
+    private long[] baseCase = null;
+    private long[][] Matrix = null;
 
-    xtremeOptimisation(int[] baseCase, int[] nthElementVector) {
-        this.baseCase = baseCase.clone();
-        this.Matrix = new int[nthElementVector.length][nthElementVector.length];
+    /**
+     * Computes T(n) with log(n) time complexity.
+     * @param baseCase         := value of T(i) for n = 0 case
+     * @param nthElementVector := value of T(n) in terms of T(n-i)s. So for
+     *                          T(n) = T(n-2) + T(n-3), it would be { 0, 1, 1 }
+     * @param n                := Value of n
+     * @return long value of T(n)
+     */
+    public static long compute(int[] baseCase, int[] nthElementVector, int n) {
+        if (baseCase.length > nthElementVector.length)
+            return 0;
+
+        xtremeOptimisation Ins = new xtremeOptimisation(baseCase, nthElementVector);
+        long[][] resultMatrix = Ins.computeNthPowerMatrix(Ins.Matrix, n);
+        long[] resultVector = Ins.multiplyVectorWithMatrix(Ins.baseCase, resultMatrix);
+
+        if (resultVector == null || resultVector.length < 1)
+            return 0;
+        return resultVector[0];
+    }
+
+    private xtremeOptimisation(int[] baseCase, int[] nthElementVector) {
+        this.baseCase = new long[nthElementVector.length];
+        for (int i = 0; i < baseCase.length; i++)
+            this.baseCase[i] = baseCase[i];
+
+        this.Matrix = new long[nthElementVector.length][nthElementVector.length];
         for (int i = 0; i < Matrix.length; i++) {
             Matrix[i][0] = nthElementVector[i];
             if (i < Matrix.length - 1)
@@ -23,22 +47,15 @@ class xtremeOptimisation {
         }
     }
 
-    public static int compute(int[] baseCase, int[] nthElementVector, int n) {
-        xtremeOptimisation Ins = new xtremeOptimisation(baseCase, nthElementVector);
-        int[][] resultMatrix = Ins.computeNthPowerMatrix(Ins.Matrix, n);
-        int[] resultVector = Ins.multiplyVectorWithMatrix(Ins.baseCase, resultMatrix);
-        return resultVector[0];
-    }
-
-    private int[][] computeNthPowerMatrix(int[][] M, int n) {
-        if (n < 0 || M.length == 0 || M.length != M[0].length)
+    private long[][] computeNthPowerMatrix(long[][] M, int n) {
+        if (n < 0 || M==null || M.length == 0 || M.length != M[0].length)
             return null;
 
-        int[][] resultMatrix = new int[M.length][M.length];
+        long[][] resultMatrix = new long[M.length][M.length];
         for (int i = 0; i < resultMatrix.length; i++)
             resultMatrix[i][i] = 1;
 
-        int[][] Mx = M.clone();
+        long[][] Mx = M.clone();
         for (int i = n; i > 0; i /= 2) {
             if (i % 2 == 1)
                 resultMatrix = multiply2Matrices(resultMatrix, Mx);
@@ -47,20 +64,20 @@ class xtremeOptimisation {
         return resultMatrix;
     }
 
-    private int[][] multiply2Matrices(int[][] A, int[][] B) {
-        int[][] M = new int[A.length][B[0].length];
+    private long[][] multiply2Matrices(long[][] A, long[][] B) {
+        long[][] M = new long[A.length][B[0].length];
         for (int i = 0; i < A.length; i++) {
             M[i] = multiplyVectorWithMatrix(A[i], B);
         }
         return M;
     }
 
-    private int[] multiplyVectorWithMatrix(int[] V, int[][] M) {
-        int[] resVector = null;
-        if (V.length != M.length)
+    private long[] multiplyVectorWithMatrix(long[] V, long[][] M) {
+        long[] resVector = null;
+        if (M == null || V.length != M.length)
             return resVector;
         else
-            resVector = new int[M[0].length];
+            resVector = new long[M[0].length];
 
         for (int i = 0; i < M.length; i++) {
             for (int j = 0; j < M[i].length; j++) {
@@ -75,7 +92,7 @@ public class frogRoutes {
     public static void main(String[] args) {
         int[] baseCase = { 1, 0, 0, 0, 0 };
         int[] vec = { 0, 1, 1, 0, 1 };
-        int result = xtremeOptimisation.compute(baseCase, vec, 50);
+        long result = xtremeOptimisation.compute(baseCase, vec, 100);
 
         System.out.println(result);
     }
