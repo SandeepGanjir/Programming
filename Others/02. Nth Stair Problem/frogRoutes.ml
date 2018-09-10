@@ -55,12 +55,25 @@ let time f x =
         if (i >= n) then [] else
         (vector i 0 n)::(matrix n (i+1)) in
       matrix n 0 in
-    let matrix vec =
+    let inMatrix vec =
       let rec getmatrix n vec i = match vec with
         | [] -> []
         | h::rest -> (h::(vector (i+1) 1 n))::(getmatrix n rest (i+1)) in
-        getmatrix (List.length vec) vec 0 in
-    List.length tn;;
+      getmatrix (List.length vec) vec 0 in
+    let rec mapn f lists = assert (lists <> []);
+      if List.mem [] lists then []
+      else f (List.map List.hd lists) :: mapn f (List.map List.tl lists) in
+    let vector_multiply vec mat =
+      mapn (fun column -> List.fold_left (+) 0 (List.map2 ( * ) vec column)) mat in
+    let matrix_multiply m1 m2 =
+      List.map (fun row -> mapn (fun column -> List.fold_left (+) 0 (List.map2 ( * ) row column)) m2) m1 in
+    let rec matrixPow mtx n =
+      if (n<=0) then idMatrix (List.length mtx) else
+      if (n mod 2 = 0) then matrixPow (matrix_multiply mtx mtx) (n/2) else
+      matrix_multiply mtx (matrixPow (matrix_multiply mtx mtx) (n/2)) in
+    let finalVector = vector_multiply baseCase (matrixPow (inMatrix tn) n) in
+    let result = match finalVector with [] -> 0 | head::rest -> head in
+    result;;
 
   let getFrogSteps_logN n = Printf.printf "\nO(log(n)) optimized solution using matrix multiplication\n%d\n" (frogSteps_logN n);;
   time getFrogSteps_logN 50;;
