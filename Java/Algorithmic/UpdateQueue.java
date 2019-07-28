@@ -81,4 +81,38 @@ public class UpdateQueue<E> {
     public interface UpdateHandler<E> {
         void process(E element, boolean immediate);
     }
+    
+    /*
+    @Test
+    public void EmptyQueueTest(){
+        UpdateQueue<String> queue = new UpdateQueue<>(100, 10);
+        assertEquals(true, queue.isEmpty());
+        queue.offer("Str1", false);
+        assertEquals(false, queue.isEmpty());
+    }
+
+    @Test
+    public void QueuePriorityOrderTest() throws InterruptedException {
+        UpdateQueue<String> queue = new UpdateQueue<>(100, 10);
+        assertEquals(true, queue.isEmpty());
+        queue.offer("Str1", false);
+        Thread.sleep(1);
+        queue.offer("Str2", false);
+        Thread.sleep(1);
+        queue.offer("Str3", false);
+        Thread.sleep(1);
+        queue.offer("Str4", true);
+        Thread.sleep(1);
+        queue.offer("Str5", false);
+        Thread.sleep(1);
+        queue.offer("Str6", false);
+        queue.offer("Str5", true);
+
+        assertEquals("Str4", queue.blockingGet());
+        assertEquals("Str5", queue.blockingGet());
+        assertEquals("Str1", queue.blockingGet());
+        assertEquals("Str2", queue.blockingGet());
+        assertEquals("Str3", queue.blockingGet());
+        assertEquals("Str6", queue.blockingGet());
+    }*/
 }
