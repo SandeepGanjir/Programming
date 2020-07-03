@@ -2,6 +2,10 @@
 /*  Use as below:
     G:\Temp\Programming> javac basic_IO.java
     G:\Temp\Programming> java basic_IO
+
+    if classpath is required
+    G:\Temp\Programming> javac -cp ".;vertx-core-3.0.0.jar" basic_IO.java
+    G:\Temp\Programming> java -cp ".;vertx-core-3.0.0.jar" basic_IO
 */
 
 import java.io.FileReader;

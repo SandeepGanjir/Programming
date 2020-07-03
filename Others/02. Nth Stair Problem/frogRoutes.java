@@ -6,7 +6,11 @@
 
    Use as below:
     G:\Temp\Programming> javac frogRoutes.java
+    
     G:\Temp\Programming> java frogRoutes
+    OR
+    G:\Temp\Programming> jar cvfe frogRoutes.jar frogRoutes *.class *.java
+    G:\Temp\Programming> java -jar frogRoutes.jar
 */
 
 class xtremeOptimisation {
