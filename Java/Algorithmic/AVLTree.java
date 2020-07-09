@@ -174,4 +174,10 @@ public class AVLTree {
         avlTree.loadSampleData();
         avlTree.processRequest();
     }
+    
+/*  final int port = new Random().nextInt(65500);
+    Vertx vertx = Vertx.vertx();
+    vertx.createHttpServer().requestHandler(req -> req.response().end(Json.encodePrettily(avlTree.root))).listen(port);
+    System.out.println("Check out the tree at: http://localhost:" + port);
+*/
 }
