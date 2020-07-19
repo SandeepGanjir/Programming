@@ -13,6 +13,7 @@ public class PrefixToPostfix {
         Scanner scanner =  new Scanner(System.in);
 		System.out.print("Enter a prefix expression e.g. '+**34/621' : " );
         final String testStr = scanner.next();
+        scanner.close();
         String result = ins.getPostOrderString(testStr);
         
 		System.out.print("Its postfix representation is : ");
@@ -59,6 +60,7 @@ public class PrefixToPostfix {
     }
 
     private class InvalidExpressionException extends Exception {
+        static final long serialVersionUID = -1;
         public InvalidExpressionException(String preOrderStr) {
             super(preOrderStr);
         }

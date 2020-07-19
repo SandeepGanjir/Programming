@@ -136,6 +136,7 @@ public class AVLTree {
             inp = scanner.next().charAt(0);
             switch (inp) {
                 case 'q':
+                    scanner.close();
                     System.exit(0);
                 case 'f':
                     System.out.print("Enter input to search: ");

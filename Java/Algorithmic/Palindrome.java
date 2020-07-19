@@ -12,7 +12,7 @@ public class Palindrome {
         test("Sandeep");
 
         int len = longestPermutationPalindrome("Random Girafarig GeeksFGeeks");
-        System.out.println("\nLongest Permutation Plaindrome : " + len);
+        System.out.println("\nLongest Permutation Palindrome : " + len);
     }
 
     public static void test(String p_Str) {
