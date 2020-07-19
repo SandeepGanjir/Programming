@@ -16,6 +16,7 @@ public class RightPosition{
         RightPosition ins = new RightPosition();
 
         int[] Ar = {6, 1, 4, 3, 5, 7, 10, 8, 9}; //ins._generateRandom(5);
+        Ar = ins._generateRandom(5);
         int idx = ins.getRightPositionElement(Ar);
 
         if(idx < 0)
