@@ -1,16 +1,16 @@
 /*
  * Given a String of parenthesis, we have to find the length of longest
  * substring with balanced parenthesis.
- * Input : "))()()(()())((()((()"
+ * Input : "))(()()(()())((()(()"
  * Output : 10
  *  @author Sandeep Ganjir
  */
 
-import java.util.Stack;
+import java.util.*;
 
 public class LongestBalancedParenthesis {
     public static void main(String[] Args) {
-        String testStr = "))()()(()())((()((()";
+        String testStr = "))(()()(()())((()(()";
         LongestBalancedParenthesis ins = new LongestBalancedParenthesis();
         
         System.out.println("Given string is : " + testStr);
@@ -23,21 +23,31 @@ public class LongestBalancedParenthesis {
 
     public int getLongestBalancedParenthesis(String str) {
         int maxLen = 0;
-        int curLen;
-        Stack<Character> stack = new Stack<>();
+        Stack<Integer> stack = new Stack<>();
 
-        for (int i = curLen = 0; i < str.length(); i++) {
+        for (int i = 0; i < str.length(); i++) {
             char ch = str.charAt(i);
-            if (ch == '(')
-                stack.push(ch);
-            else if (ch == ')') {
-                if (stack.isEmpty()) {
-                    curLen = 0;
+            if (ch == '(') {
+                if (!stack.isEmpty() && stack.peek()>0)
+                    stack.push(-1 * stack.pop());
+                else
+                    stack.push(0);
+            } else if (ch == ')') {
+                if (stack.isEmpty() || stack.peek()>0) {
+                    stack.empty();
                 } else {
-                    stack.pop();
-                    curLen += 2;
-                    if (stack.isEmpty() && maxLen < curLen)
-                        maxLen = curLen;
+                    int top = stack.pop();
+                    int curLen = -1*top + 2;
+                    if (!stack.isEmpty()) {
+                        top = stack.pop();
+                        if (top == 0)
+                            curLen *= -1;
+                        else
+                            curLen = (curLen + Math.abs(top)) * (top/Math.abs(top));
+                    }
+                    stack.push(curLen);
+                    if (maxLen < Math.abs(curLen))
+                        maxLen =  Math.abs(curLen);
                 }
             } else
                 throw new RuntimeException("Invalid Input String");
