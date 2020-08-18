@@ -16,7 +16,8 @@ public class RebuildQueue {
         RebuildQueue instance = new RebuildQueue();
         Queue<Person> queue = instance.inputQueue();
         
-        System.out.println(" Original Queue");
+        System.out.println("Each person in queue has two information his height, and number of persons standing ahead of him taller than them");
+        System.out.println(" Given List");
         instance.printQueue(queue);
 
         System.out.println("\n After Fixing the Queue");
@@ -67,7 +68,7 @@ public class RebuildQueue {
 
     private void printQueue(Queue<Person> queue) {
         queue.forEach((next) -> {
-            System.out.print(next.getHeight() + ", ");
+            System.out.print("(" + next.getHeight() + ", " + next.getPeopleWithMoreHeight() + "); ");
         });
     }
 }
