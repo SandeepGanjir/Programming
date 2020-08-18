@@ -12,4 +12,38 @@
 import java.util.*;
 
 public class LargestMonotonicSubsequence {
+    private void searchAndReplace(List<Integer> list, int value) {
+        int beg = 0;
+        int end = list.size() - 1;
+        while (beg <= end) {
+            int mid = (beg + end) / 2;
+            if (list.get(mid) < value) {
+                beg = mid + 1;
+            } else {
+                if (mid == 0 || list.get(mid - 1) < value)
+                    list.set(mid, value);
+                end = mid - 1;
+            }
+        }
+    }
+
+    private int longestMonotonicSubsequence(int[] Ar) {
+        List<Integer> result = new ArrayList<>();
+        result.add(Ar[0]);
+        for (int i=1; i<Ar.length; i++) {
+            if (Ar[i] > result.get(result.size()-1))
+                result.add(Ar[i]);
+            else
+                searchAndReplace(result, Ar[i]);
+        }
+        return result.size();
+    }
+
+    public static void main(String[] Args) {
+        LargestMonotonicSubsequence ins = new LargestMonotonicSubsequence();
+        int[] Ar = {1, 5, 2, 8, 50, 30, 25, 11, 40};
+
+        System.out.println("The length of longest monotonic susequenece for : " + Arrays.toString(Ar));
+        System.out.println(ins.longestMonotonicSubsequence(Ar));
+    }
 }
