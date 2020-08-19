@@ -9,7 +9,7 @@ so, if we take 1 call and 1 put of same leverage from same issuer and take avera
 Algorithm:
 For each assets
 1) Bucketize all products by issuers, into calls or puts and then by leverage bucket (<5, 5-10, >10). 
-2) Take count & average of spot for each product for all bucket. Calculate issuer spot by taking average of spot from buckets. Calculatetotal number of calls and puts for each issuer.
+2) Take count & average of spot for each product for all bucket. Calculate issuer spot by taking average of spot from buckets. Calculate total number of calls and puts for each issuer.
 3) Take Weighted average of the issuer spot for final spot, where weight is Sqrt( Min(Call, Puts) ) for each issuer.
 We are taking min of number of calls and puts because a balanced portfolio indicates better confidence level. And I used square root because emperically I wanted to have higher weight for issuer with more products but at the same time i didn't wanted to have a scenario where one issuer with a lot of products is completely driving the price.
 As a result of the new algorithm our Time weighted average deviation went from 20-150 bps to under 5 bps.
