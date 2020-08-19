@@ -11,24 +11,25 @@
 import java.util.*;
 
 public class BestRoute {
-    private int maxIncome(int[] src, int[] dest, int[] tips) {
-        int lastPoint = 0;
-        for (int i=0; i<dest.length; i++) {
-            if (dest[i] > lastPoint)
-                lastPoint = dest[i];
+    private long maxIncome(List<Long> src, List<Long> dest, List<Long> tips) {
+        long lastPoint = 0;
+        for (int i = 0; i < dest.size(); i++) {
+            if (dest.get(i) > lastPoint)
+                lastPoint = dest.get(i);
         }
-        int[] incomes = new int[lastPoint+1];
-        for (int i=0; i<src.length; i++) {
-            int incomeFromCurrTrip = dest[i] - src[i] + tips[i];
-            int incomeBeforeCurrTrip = 0;
-            for (int j=src[i]; j>=0; j--) {
-                if(incomes[j] > incomeBeforeCurrTrip)
-                incomeBeforeCurrTrip = incomes[j];
+        long[] incomes = new long[(int) (lastPoint + 1)];
+        for (int i = 0; i < src.size(); i++) {
+            long incomeFromCurrTrip = dest.get(i) - src.get(i) + tips.get(i);
+            long incomeBeforeCurrTrip = 0;
+            for (int j = src.get(i).intValue(); j >= 0; j--) {
+                if (incomes[j] > incomeBeforeCurrTrip)
+                    incomeBeforeCurrTrip = incomes[j];
             }
-            incomes[dest[i]] = Math.max(incomes[dest[i]], incomeBeforeCurrTrip+incomeFromCurrTrip);
+            int destIdx = dest.get(i).intValue();
+            incomes[destIdx] = Math.max(incomes[destIdx], incomeBeforeCurrTrip + incomeFromCurrTrip);
         }
-        int maxIncome = 0;
-        for (int i=0; i<incomes.length; i++) {
+        long maxIncome = 0;
+        for (int i = 0; i < incomes.length; i++) {
             maxIncome = Math.max(maxIncome, incomes[i]);
         }
         return maxIncome;
@@ -36,11 +37,11 @@ public class BestRoute {
 
     public static void main(String args[]) {
         BestRoute ins = new BestRoute();
-        int[] src = {0, 2, 9, 10, 11, 12};
-        int[] dest = {5, 9, 11, 11, 14, 17};
-        int[] tips = {1, 2, 3, 2, 2, 1};
+        List<Long> src = Arrays.asList(0l, 2l, 9l, 10l, 11l, 12l);
+        List<Long> dest = Arrays.asList(5l, 9l, 11l, 11l, 14l, 17l);
+        List<Long> tips = Arrays.asList(1l, 2l, 3l, 2l, 2l, 1l);
         System.out.println("The maximum income the driver can make from the given customer routes : ");
-        System.out.println("Source : " + Arrays.toString(src) + "\nDestination: " + Arrays.toString(dest) + "\nTips : " + Arrays.toString(tips));
+        System.out.println("Source : " + src + "\nDestination: " + dest + "\nTips : " + tips);
         System.out.println("Max Income : " + ins.maxIncome(src, dest, tips));
     }
 }
