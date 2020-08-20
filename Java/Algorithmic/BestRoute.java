@@ -11,6 +11,27 @@
 import java.util.*;
 
 public class BestRoute {
+    private long maxIncomeOptimized(List<Long> src, List<Long> dest, List<Long> tips) {
+        long lastPoint = 0;
+        for (int i = 0; i < dest.size(); i++) {
+            if (dest.get(i) > lastPoint)
+                lastPoint = dest.get(i);
+        }
+        long[] incomes = new long[(int) (lastPoint + 1)];
+        long maxIncome = 0;
+        int idx = 0;
+        for (int i = 0; i < incomes.length; i++) {
+            maxIncome = Math.max(maxIncome, incomes[i]);
+            if (idx < src.size() && i == src.get(idx).intValue()) {
+                long incomeWithCurrTrip = dest.get(idx) - src.get(idx) + tips.get(idx) + maxIncome;
+                int destIdx = dest.get(idx).intValue();
+                incomes[destIdx] = Math.max(incomes[destIdx], incomeWithCurrTrip);
+                idx++;
+            }
+        }
+        return maxIncome;
+    }
+
     private long maxIncome(List<Long> src, List<Long> dest, List<Long> tips) {
         long lastPoint = 0;
         for (int i = 0; i < dest.size(); i++) {
@@ -43,5 +64,6 @@ public class BestRoute {
         System.out.println("The maximum income the driver can make from the given customer routes : ");
         System.out.println("Source : " + src + "\nDestination: " + dest + "\nTips : " + tips);
         System.out.println("Max Income : " + ins.maxIncome(src, dest, tips));
+        System.out.println("Max Income Optimized : " + ins.maxIncomeOptimized(src, dest, tips));
     }
 }
