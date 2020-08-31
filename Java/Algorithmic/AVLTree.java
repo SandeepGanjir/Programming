@@ -7,23 +7,24 @@ import java.util.Comparator;
 import java.util.Scanner;
 import java.io.StringReader;
 
-public class AVLTree {
-    class AvlNode {
-        private int data;
+public class AVLTree<V> {
+    private class AvlNode<E> {
+        private E data;
         private int height = 0;
-        private AvlNode leftChild = null;
-        private AvlNode rightChild = null;
-        private final Comparator<Integer> comparator = Integer::compareTo;
+        private AvlNode<E> leftChild = null;
+        private AvlNode<E> rightChild = null;
+        private final Comparator<? super E> comparator;
 
-        AvlNode(int data) {
+        AvlNode(E data, Comparator<? super E> comparator) {
+            this.comparator = comparator;
             this.data = data;
         }
 
-        public int value(){
+        public E value() {
             return data;
         }
 
-        boolean find(int data) {
+        public boolean find(E data) {
             if (comparator.compare(data, this.data) == 0) return true;
             if (comparator.compare(data, this.data) < 0)
                 return this.leftChild == null ? false : this.leftChild.find(data);
@@ -31,16 +32,16 @@ public class AVLTree {
                 return this.rightChild == null ? false : this.rightChild.find(data);
         }
 
-        AvlNode insert(int data) {
+        public AvlNode<E> insert(E data) {
             if (comparator.compare(data, this.data) == 0) return this;
             if (comparator.compare(data, this.data) < 0)
-                leftChild = leftChild == null ? new AvlNode(data) : leftChild.insert(data);
+                leftChild = leftChild == null ? new AvlNode<>(data, comparator) : leftChild.insert(data);
             else
-                rightChild = rightChild == null ? new AvlNode(data) : rightChild.insert(data);
+                rightChild = rightChild == null ? new AvlNode<>(data, comparator) : rightChild.insert(data);
             return rebalance();
         }
 
-        AvlNode delete(int data, AvlNode nodeToDel) {
+        public AvlNode<E> delete(E data, AvlNode<E> nodeToDel) {
             if (comparator.compare(data, this.data) == 0) {
                 nodeToDel = this;
             }
@@ -55,8 +56,8 @@ public class AVLTree {
             return rebalance();
         }
 
-        private AvlNode rebalance() {
-            AvlNode rotNewCur;
+        private AvlNode<E> rebalance() {
+            AvlNode<E> rotNewCur;
             if (leftHeight() - rightHeight() > 1) {
                 if (leftChild.leftHeight() > leftChild.rightHeight()) {
                     rotNewCur = leftChild;
@@ -103,21 +104,30 @@ public class AVLTree {
         }
     }
 
-    private AvlNode root = null;
+    private AvlNode<V> root = null;
+    private final Comparator<? super V> comparator;
 
-    public boolean find(int data) {
+    public AVLTree() {
+        this.comparator = Comparator.comparing(a -> Double.valueOf(a.toString()));
+    }
+
+    public AVLTree(Comparator<? super V> comparator) {
+        this.comparator = comparator;
+    }
+
+    public boolean find(V data) {
         return root == null ? false : root.find(data);
     }
 
-    public void insert(int data) {
-        root = root == null ? new AvlNode(data) : root.insert(data);
+    public void insert(V data) {
+        root = root == null ? new AvlNode<>(data, comparator) : root.insert(data);
     }
 
-    public void delete(int data) {
+    public void delete(V data) {
         root = root == null ? null : root.delete(data, null);
     }
 
-    public void processRequest() {
+    public static void processRequest(AVLTree avlTree) {
         char inp = 'c';
         Scanner scanner = new Scanner(System.in);
         String msg = "##########################################################\n" +
@@ -136,44 +146,44 @@ public class AVLTree {
             inp = scanner.next().charAt(0);
             switch (inp) {
                 case 'q':
-                    scanner.close();
                     System.exit(0);
                 case 'f':
                     System.out.print("Enter input to search: ");
-                    System.out.println(find(scanner.nextInt()));
+                    System.out.println(avlTree.find(scanner.nextInt()));
                     break;
                 case 'i':
                     System.out.print("Enter input to insert: ");
-                    insert(scanner.nextInt());
+                    avlTree.insert(scanner.nextInt());
                     break;
                 case 'I':
                     System.out.print("Enter space separated integers to insert: ");
                     scanner.nextLine();
                     String inputString = scanner.nextLine();
                     for (Scanner sc = new Scanner(new StringReader(inputString)); sc.hasNextInt(); )
-                        insert(sc.nextInt());
+                        avlTree.insert(sc.nextInt());
                     break;
                 case 'd':
                     System.out.print("Enter input to delete: ");
-                    delete(scanner.nextInt());
+                    avlTree.delete(scanner.nextInt());
                     break;
                 case 'D':
-                    root = null;
+                    avlTree.root = null;
                     break;
             }
         }
+        scanner.close();
     }
 
-    private void loadSampleData() {
-        int[] Ar = {15, 11, 12, 7, 9, 5, 5, 3, 10};
+    private static void loadSampleData(AVLTree avlTree) {
+        int[] Ar = {15, 11, 12, 7, 9, 5, 5, 3, 10}; //{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16};
         for (int i = 0; i < Ar.length; i++)
-            insert(Ar[i]);
+            avlTree.insert(Ar[i]);
     }
 
     public static void main(String[] args) {
-        AVLTree avlTree = new AVLTree();
-        avlTree.loadSampleData();
-        avlTree.processRequest();
+        final AVLTree<Integer> avlTree = new AVLTree<>(Comparator.comparingInt(a -> (Integer) a));
+        loadSampleData(avlTree);
+        processRequest(avlTree);
     }
     
 /*  final int port = new Random().nextInt(65500);
