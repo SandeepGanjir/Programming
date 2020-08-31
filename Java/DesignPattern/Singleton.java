@@ -1,4 +1,5 @@
 /*
+*  Creational Design Pattern
 *  This pattern ensures that we have only one instance of a class.
 *
 *  |—————————————————————————————————————|

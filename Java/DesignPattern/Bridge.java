@@ -1,4 +1,5 @@
 /*
+*  Structural Design Pattern
 *  This pattern decouples an abstractionfromits implementation (as in usage)
 *   so that the two can vary independently. ⟣*
 *  |—————————————————————|                     |——————————————————————————————|
