@@ -2,6 +2,10 @@ Array:
 Prune and Search
 Kadane Max Contigious Subarray Sum
 Bit Manipulation
+Radix Sort 
+-Moore Voting Algorithm
+-Dynamic Programming / Viterbi Algo
+-Erdo's Szekeres Theorem (Longest Monotonic Subsequence)
 
 Linked List:
 Floyd’s Cycle-Finding Algorithm
@@ -9,6 +13,15 @@ Floyd’s Cycle-Finding Algorithm
 String:
 Knuth Morris Pratt (KMP)
 Rabin-Karp Algorithm for Pattern Searching
+
+Fourier Transform:
+Cooley–Tukey FFT algorithm
+
+Trees:
+K-D Tree
+Red Black Tree
+AVL Tree
+Segment Tree
 
 DAG:
 Topological sorting
