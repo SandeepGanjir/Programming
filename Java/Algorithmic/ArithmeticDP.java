@@ -1,14 +1,14 @@
 /* 
-*   Given an array “a” of n elements, return true if you can form a valid math 
+*   Given an array “A” of n elements, return true if you can form a valid math 
 *    expression by inserting +, - or * between each of the elements, such that 
 *    the result is a multiple of m. You can assume left to right precedence.
 *   Input :
 *    Operations : +, -, *
-*    Weights : [1, 4, 9]
+*    A : [1, 4, 9]
 *    m = 15
 *    Output :  True [1+4*9 = 45]
 *
-*    Weights : [18, 16, 17, 5, 7, 12, 11, 3]
+*    A : [18, 16, 17, 5, 7, 12, 11, 3]
 *    m = 381
 *    Output :  False
 */
