@@ -72,7 +72,7 @@ public class ArithmeticDP {
             for (int i = 0; i < m; i++) {
                 if (dp[j % 2][i]) {
                     dp[(j + 1) % 2][(i + A[j]) % m] = true;
-                    dp[(j + 1) % 2][(i - A[j] + m) % m] = true;
+                    dp[(j + 1) % 2][((i - A[j]) % m + m) % m] = true;
                     dp[(j + 1) % 2][(i * A[j]) % m] = true;
                 }
             }
